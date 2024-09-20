@@ -22,6 +22,7 @@ const List = React.memo(
         return data;
       });
       setTodoData(newTodoData);
+      localStorage.setItem("todoData", JSON.stringify(newTodoData));
     };
 
     const handleEditChange = (e) => {
@@ -35,8 +36,9 @@ const List = React.memo(
         }
         return data;
       });
-      setTodoData(newTodoData);
+      localStorage.setItem("todoData", JSON.stringify(newTodoData));
       setIsEditing(false);
+      window.location.reload();
     };
 
     if (isEditing) {
@@ -87,7 +89,7 @@ const List = React.memo(
             <input
               type="checkbox"
               onChange={() => handleCompleteChange(id)}
-              defaultChecked={false}
+              defaultChecked={completed}
               className="mr-2"
             />
             <span className={completed ? "line-through" : undefined}>
